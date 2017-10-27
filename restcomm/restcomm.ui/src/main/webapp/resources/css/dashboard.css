@@ -821,6 +821,20 @@ form[role=login] input:-webkit-autofill:focus{
 
 }
 
+/* -- Applications -----------------------------------------------------*/
+
+.apps-list {
+    font-size: 1.5em;
+}
+
+.apps-list .apps-list-navigation {
+    color: #abacad;
+    text-align: right;
+    padding-right: 50px;
+    margin-top: 20px;
+    font-size: 0.8em;
+}
+
 .rc-btn.delete-btn {
     background-color: #F44336;
 }

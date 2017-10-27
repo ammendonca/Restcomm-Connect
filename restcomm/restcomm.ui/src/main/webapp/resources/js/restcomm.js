@@ -148,6 +148,11 @@ rcMod.config(['$stateProvider','$urlRouterProvider', function($stateProvider, $u
         localApps: function (rappService, authorize) { return rappService.refreshLocalApps();}
     }
   });
+  $stateProvider.state('restcomm.applications',{
+    url:'/applications',
+    templateUrl: 'modules/applications.html',
+    controller: 'ApplicationsCtrl'
+  });
   $stateProvider.state('restcomm.clients',{
     url:'/numbers/clients',
     templateUrl: 'modules/numbers-clients.html',
