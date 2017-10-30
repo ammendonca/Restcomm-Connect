@@ -678,6 +678,12 @@ rcServices.factory('RCommApps', function($resource) {
 rcServices.factory('RCommApplications', function($resource) {
     return $resource('/restcomm/2012-04-24/Accounts/:accountSid/Applications.json', {
         accountSid: '@accountSid'
+    },
+    {
+        get: {
+            url: '/restcomm/2012-04-24/Accounts/:accountSid/Applications/:applicationSid.json',
+            applicationSid: '@applicationSid'
+        }
     });
 });
 
