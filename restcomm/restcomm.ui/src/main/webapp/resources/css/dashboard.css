@@ -843,6 +843,10 @@ form[role=login] input:-webkit-autofill:focus{
     width: 20%;
 }
 
+.apps-list .apps-list-number {
+    width: 20%;
+}
+
 
 .rc-btn.delete-btn {
     background-color: #F44336;
