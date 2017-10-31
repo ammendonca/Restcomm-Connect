@@ -107,7 +107,7 @@ rcFilters.filter('toTrusted', ['$sce', function($sce){
 rcFilters.filter('appKind', function () {
     var r = "/restcomm-rvd/";
     return function(rcmlUrl) {
-        if (rcmlUrl.match(r))
+        if (!!rcmlUrl && rcmlUrl.match(r))
             return "rvd";
         else
             return "external";

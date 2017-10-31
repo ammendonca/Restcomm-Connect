@@ -93,6 +93,9 @@ rcMod.config(['$stateProvider','$urlRouterProvider', function($stateProvider, $u
         },
         identity: function (IdentityConfig) {
             return IdentityConfig.getIdentity();
+        },
+        dashboardConfig: function (PublicConfig) {
+
         }
     }
   });

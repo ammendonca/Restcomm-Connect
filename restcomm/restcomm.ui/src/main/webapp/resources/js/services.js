@@ -676,16 +676,27 @@ rcServices.factory('RCommApps', function($resource) {
 });
 
 rcServices.factory('RCommApplications', function($resource) {
-    return $resource('/restcomm/2012-04-24/Accounts/:accountSid/Applications.json', {
-        accountSid: '@accountSid'
-    },
+    return $resource('/restcomm/2012-04-24/Accounts/:accountSid/Applications/:applicationSid.json', {
+        accountSid: '@accountSid',
+        applicationSid: '@applicationSid'
+    }/*,
     {
         get: {
             url: '/restcomm/2012-04-24/Accounts/:accountSid/Applications/:applicationSid.json',
             applicationSid: '@applicationSid'
         }
-    });
+    }*/);
 });
+
+rcServices.factory('RvdProjects', function($resource) {
+    return $resource('/restcomm-rvd/services/projects/:applicationSid', {
+            applicationSid: '@applicationSid'
+        }
+    ); // TODO use 'rvdUrl' value from PublicConfig service here to determine 'restcomm-rvd' prefix
+});
+
+http://this:8080/restcomm-rvd/services/projects/AP1f854cbe88ef400183c8a5eec3bd1d69
+
 
 rcServices.factory('RCVersion', function($resource) {
    return $resource('/restcomm/2012-04-24/Accounts/:accountSid/Version.:format', {
