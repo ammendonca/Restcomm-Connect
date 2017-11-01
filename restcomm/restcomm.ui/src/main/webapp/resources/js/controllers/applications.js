@@ -3,7 +3,7 @@ angular.module('rcApp.controllers').controller('ApplicationsCtrl', function ($sc
     $scope.appsList = RCommApplications.query({accountSid: accountSid, includeNumbers: true});
 });
 
-angular.module('rcApp.controllers').controller('ApplicationDetailsCtrl', function ($scope, RCommApplications, RvdProjects, SessionService, $stateParams, $location, $dialog, Notifications, $filter, $httpParamSerializer) {
+angular.module('rcApp.controllers').controller('ApplicationDetailsCtrl', function ($scope, RCommApplications, RvdProjects, SessionService, $stateParams, $location, $dialog, Notifications, $filter, $httpParamSerializer, FileRetriever) {
     var accountSid = SessionService.get("sid");
     var applicationSid = $stateParams.applicationSid;
     $scope.app = RCommApplications.get({accountSid: accountSid, applicationSid: applicationSid}, function () {
@@ -23,6 +23,13 @@ angular.module('rcApp.controllers').controller('ApplicationDetailsCtrl', functio
         RCommApplications.save({accountSid: accountSid, applicationSid: applicationSid}, $httpParamSerializer({RcmlUrl: app.rcml_url}), function () {
             Notifications.success("Application '" + app.friendly_name + " ' saved");
             $location.path( "/applications" );
+        });
+    }
+
+    $scope.downloadRvdApp = function(app) {
+        var downloadUrl =  '/restcomm-rvd/services/projects/' + app.sid + '/archive?projectName=' + app.friendly_name; // TODO remove '/restcomm-rvd/' hardcoded value and use one from PublicConfig service
+        FileRetriever.download(downloadUrl, app.friendly_name + ".zip").catch(function () {
+            notifications.error("Error downloading project archive");
         });
     }
 });

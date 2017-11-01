@@ -820,6 +820,45 @@ rcServices.factory('PublicConfig', function ($http) {
     return config;
 });
 
+rcServices.factory('FileRetriever', function (Blob, FileSaver, $http) {
+    // Returns a promise.
+    // resolved: nothing is returned - the file has been saved normally
+    // rejected: ERROR_RETRIEVING_FILE - either an HTTP, or empty file returned
+    function download(downloadUrl, filename, contentType) {
+        contentType = contentType || 'application/zip'; // contentType defaults to application/zip
+        // returns a promise
+	    return $http({
+	        method: 'GET',
+	        url: downloadUrl,
+            headers: { accept: contentType },
+	        responseType: 'arraybuffer',
+            cache: false,
+            transformResponse: function(data, headers) {
+                var zip = null;
+                if (data) {
+                    zip = new Blob([data], {
+                        type: contentType
+                    });
+                }
+                var result = {blob: zip};
+                return result;
+            }
+	    }).then(function (response) {
+            if (response.data.blob) {
+                FileSaver.saveAs(response.data.blob, filename);
+                return;
+            } else
+                throw 'ERROR_RETRIEVING_FILE';
+	    }, function () {
+	        throw 'ERROR_RETRIEVING_FILE';
+	    });
+	}
+
+	return {
+	    download: download
+	}
+});
+
 /*
  * RAS Services
  */

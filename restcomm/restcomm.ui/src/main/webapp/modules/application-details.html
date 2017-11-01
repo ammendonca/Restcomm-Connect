@@ -14,10 +14,14 @@
                     <span>{{app.date_created}}</span>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="app-export">
-                    <a href="#">Download</a>
+            <div ng-if="provider=='rvd'" class="col-md-3">
+                <div class="app-details-export pull-right">
+                    <button  class="rc-btn save-btn" ng-click="downloadRvdApp(app)">
+                        <span><i class="fa fa-download"></i></span>
+                    </button>
                 </div>
+
+
             </div>
         </div>
 
