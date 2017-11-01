@@ -679,7 +679,15 @@ rcServices.factory('RCommApplications', function($resource) {
     return $resource('/restcomm/2012-04-24/Accounts/:accountSid/Applications/:applicationSid.json', {
         accountSid: '@accountSid',
         applicationSid: '@applicationSid'
-    }/*,
+    },{
+        save: {
+            method: "POST",
+            headers : {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }
+    }
+    /*,
     {
         get: {
             url: '/restcomm/2012-04-24/Accounts/:accountSid/Applications/:applicationSid.json',

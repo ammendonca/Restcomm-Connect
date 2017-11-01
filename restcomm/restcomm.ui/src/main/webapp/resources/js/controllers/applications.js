@@ -3,7 +3,7 @@ angular.module('rcApp.controllers').controller('ApplicationsCtrl', function ($sc
     $scope.appsList = RCommApplications.query({accountSid: accountSid, includeNumbers: true});
 });
 
-angular.module('rcApp.controllers').controller('ApplicationDetailsCtrl', function ($scope, RCommApplications, RvdProjects, SessionService, $stateParams, $location, $dialog, Notifications, $filter) {
+angular.module('rcApp.controllers').controller('ApplicationDetailsCtrl', function ($scope, RCommApplications, RvdProjects, SessionService, $stateParams, $location, $dialog, Notifications, $filter, $httpParamSerializer) {
     var accountSid = SessionService.get("sid");
     var applicationSid = $stateParams.applicationSid;
     $scope.app = RCommApplications.get({accountSid: accountSid, applicationSid: applicationSid}, function () {
@@ -20,7 +20,10 @@ angular.module('rcApp.controllers').controller('ApplicationDetailsCtrl', functio
     }
 
     $scope.saveExternalApp = function(app) {
-        console.log('saving external application');
+        RCommApplications.save({accountSid: accountSid, applicationSid: applicationSid}, $httpParamSerializer({RcmlUrl: app.rcml_url}), function () {
+            Notifications.success("Application '" + app.friendly_name + " ' saved");
+            $location.path( "/applications" );
+        });
     }
 });
 
