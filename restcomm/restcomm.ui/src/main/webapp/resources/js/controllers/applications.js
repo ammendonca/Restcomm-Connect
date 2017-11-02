@@ -34,6 +34,12 @@ angular.module('rcApp.controllers').controller('ApplicationDetailsCtrl', functio
     }
 });
 
+angular.module('rcApp.controllers').controller('ApplicationCreationWizzardCtrl', function ($scope) {
+    console.log("IN ApplicaitonCreateionWizzardCtrl");
+});
+
+
+
 var confirmApplicationDelete = function(app, $dialog, $scope, Notifications, RCommApplications, RvdProjects, $location) {
   var title = 'Delete application \'' + app.friendly_name + '\'';
   var msg = 'Are you sure you want to delete application ' + app.sid + ' (' + app.friendly_name +  ') ? This action cannot be undone.';
