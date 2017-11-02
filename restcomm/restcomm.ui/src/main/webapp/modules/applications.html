@@ -16,7 +16,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            <div ng-hide="(appsList | filter:query).length > 0" class="jumbotron no-records-alert">
+            <div ng-hide="(appsList | filter:query).length > 0" class="jumbotron">
                 <h2><i class="fa fa-exclamation-circle"></i> No applications found</h2>
             </div>
 
@@ -43,6 +43,6 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-offset-9 col-md-3 apps-list-navigation">1-{{appsList.length}} from {{appsList.length}} Applications</div>
+        <div class="col-md-offset-9 col-md-3 apps-list-navigation">Showing {{(appsList | filter:query).length}} from {{appsList.length}} Applications</div>
     </div>
 </div>
