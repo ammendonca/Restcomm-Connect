@@ -162,6 +162,11 @@ rcMod.config(['$stateProvider','$urlRouterProvider', function($stateProvider, $u
       templateUrl: 'modules/application-creation-wizzard.html',
       controller: 'ApplicationCreationWizzardCtrl'
   });
+  $stateProvider.state('restcomm.application-creation',{
+      url:'/applications/new',
+      templateUrl: 'modules/application-creation.html',
+      controller: 'ApplicationCreationCtrl'
+  });
   $stateProvider.state('restcomm.application-details',{
       url:'/applications/:applicationSid',
       templateUrl: 'modules/application-details.html',

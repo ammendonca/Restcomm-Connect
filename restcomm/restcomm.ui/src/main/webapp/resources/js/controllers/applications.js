@@ -38,7 +38,9 @@ angular.module('rcApp.controllers').controller('ApplicationCreationWizzardCtrl',
     console.log("IN ApplicaitonCreateionWizzardCtrl");
 });
 
-
+angular.module('rcApp.controllers').controller('ApplicationCreationCtrl', function ($scope) {
+    console.log("IN ApplicationCreationCtrl");
+});
 
 var confirmApplicationDelete = function(app, $dialog, $scope, Notifications, RCommApplications, RvdProjects, $location) {
   var title = 'Delete application \'' + app.friendly_name + '\'';
