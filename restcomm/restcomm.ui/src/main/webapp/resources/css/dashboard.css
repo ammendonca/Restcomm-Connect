@@ -885,7 +885,7 @@ form[role=login] input:-webkit-autofill:focus{
     margin-bottom: 20px;
 }
 
-.app-details .app-details-content {
+.app-details .app-details-content,  .app-creation .app-creation-content{
     min-height: 250px;
 }
 
@@ -899,6 +899,20 @@ form[role=login] input:-webkit-autofill:focus{
     min-height: 300px;
     background-color: lightgoldenrodyellow;
 }
+
+.app-creation .name-param input {
+    width: 80%;
+}
+
+.app-creation .params-section {
+    font-size: 1.2em;
+    margin-top: 50px;
+}
+
+.app-creation .kind-selection > button {
+    min-width: 50px;
+}
+
 
 
 .rc-btn.delete-btn {
@@ -994,6 +1008,14 @@ form[role=login] input:-webkit-autofill:focus{
 .rc-textbox.rc-textbox-advanced {
     border: 2px solid #ffdacb;
 }
+
+button.btn-selection {
+    background-color: white;
+    border: none;
+    box-shadow: none !important;
+    border-bottom: 1px solid #e4e4e4;
+}
+
 
 
 

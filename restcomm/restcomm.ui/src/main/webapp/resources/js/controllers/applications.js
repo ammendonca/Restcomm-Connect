@@ -52,6 +52,15 @@ angular.module('rcApp.controllers').controller('ApplicationCreationCtrl', functi
         droppedFiles = $rootScope.droppedFiles;
         delete $rootScope.droppedFiles;
     }
+    if (!droppedFiles) {
+        appOptions.kind = "voice"; // by default create voice applications
+    }
+
+    $scope.setKind = function(options, kind) {
+        options.kind = kind;
+    }
+
+
     // if we're importing, use imported filename to suggest a name for the newly created project
     if (droppedFiles) {
         var m = droppedFiles[0].name.match(RegExp("(.+)\\.zip$"));
