@@ -34,12 +34,65 @@ angular.module('rcApp.controllers').controller('ApplicationDetailsCtrl', functio
     }
 });
 
-angular.module('rcApp.controllers').controller('ApplicationCreationWizzardCtrl', function ($scope) {
-    console.log("IN ApplicaitonCreateionWizzardCtrl");
+angular.module('rcApp.controllers').controller('ApplicationCreationWizzardCtrl', function ($scope, $rootScope, $location) {
+    console.log("IN ApplicaitonCreationWizzardCtrl");
+
+    $scope.onFileDropped = function(files) {
+        console.log("dropped the following files: ", files);
+        $rootScope.droppedFiles = files;
+        $location.path("/applications/new");
+
+    }
 });
 
-angular.module('rcApp.controllers').controller('ApplicationCreationCtrl', function ($scope) {
+angular.module('rcApp.controllers').controller('ApplicationCreationCtrl', function ($scope, $rootScope, $location, Notifications, RvdProjectImporter) {
     console.log("IN ApplicationCreationCtrl");
+    var appOptions = {}, droppedFiles; // all options the application needs to be created like name, kind ... anything else ?
+    if ( !!$rootScope.droppedFiles ) {
+        droppedFiles = $rootScope.droppedFiles;
+        delete $rootScope.droppedFiles;
+    }
+    // if we're importing, use imported filename to suggest a name for the newly created project
+    if (droppedFiles) {
+        var m = droppedFiles[0].name.match(RegExp("(.+)\\.zip$"));
+        if ( m && m[1] ) {
+            appOptions.name = m[1];
+        }
+    }
+
+    $scope.importProjectFromFile = function(files, overrideName) {
+        if (files[0]) {
+            RvdProjectImporter.import(files[0]).then(function () {
+                Notifications.success("Application imported successfully");
+                $location.path("/applications");
+            }, function (message) {
+                Notifications.error(message);
+            });
+        }
+
+        /*
+        $scope.upload = $upload.upload({
+            url: '/restcomm-rvd/services/projects',
+            file: file,
+        }).progress(function(evt) {
+            //console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+        }).success(function(data, status, headers, config) {
+            Notifications.success("Application imported successfully");
+            $location.path("/applications")
+        }).error(function(data, status, headers, config) {
+            if (status == 400 && data && data.exception && data.exception.className == "UnsupportedProjectVersion") {
+                console.log(data.exception.message);
+                Notifications.error("Cannot import application. " + data.exception.message, type:"danger");
+            } else {
+                console.log(data);
+                Notifications.error("Error importing application");
+            }
+        });
+        */
+    }
+
+    $scope.appOptions = appOptions;
+    $scope.droppedFiles = droppedFiles;
 });
 
 var confirmApplicationDelete = function(app, $dialog, $scope, Notifications, RCommApplications, RvdProjects, $location) {
