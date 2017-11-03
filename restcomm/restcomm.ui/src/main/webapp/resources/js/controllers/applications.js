@@ -60,9 +60,9 @@ angular.module('rcApp.controllers').controller('ApplicationCreationCtrl', functi
         }
     }
 
-    $scope.importProjectFromFile = function(files, overrideName) {
+    $scope.importProjectFromFile = function(files, nameOverride) {
         if (files[0]) {
-            RvdProjectImporter.import(files[0]).then(function () {
+            RvdProjectImporter.import(files[0], nameOverride).then(function () {
                 Notifications.success("Application imported successfully");
                 $location.path("/applications");
             }, function (message) {

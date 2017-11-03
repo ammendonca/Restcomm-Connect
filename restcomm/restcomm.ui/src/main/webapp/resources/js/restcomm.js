@@ -9,7 +9,7 @@ var rcMod = angular.module('rcApp', [
   'angular-md5',
   'ui.bootstrap.modal.dialog',
 //  'loadingOnAJAX',
-  'angularFileUpload',
+  'ngFileUpload',
   'ngPasswordStrength',
   'nvd3',
   'ngSanitize',
