@@ -38,15 +38,13 @@ angular.module('rcApp.controllers').controller('ApplicationCreationWizzardCtrl',
     console.log("IN ApplicaitonCreationWizzardCtrl");
 
     $scope.onFileDropped = function(files) {
-        console.log("dropped the following files: ", files);
         $rootScope.droppedFiles = files;
         $location.path("/applications/new");
 
     }
 });
 
-angular.module('rcApp.controllers').controller('ApplicationCreationCtrl', function ($scope, $rootScope, $location, Notifications, RvdProjectImporter) {
-    console.log("IN ApplicationCreationCtrl");
+angular.module('rcApp.controllers').controller('ApplicationCreationCtrl', function ($scope, $rootScope, $location, Notifications, RvdProjectImporter, RvdProjects) {
     var appOptions = {}, droppedFiles; // all options the application needs to be created like name, kind ... anything else ?
     if ( !!$rootScope.droppedFiles ) {
         droppedFiles = $rootScope.droppedFiles;
@@ -58,6 +56,15 @@ angular.module('rcApp.controllers').controller('ApplicationCreationCtrl', functi
 
     $scope.setKind = function(options, kind) {
         options.kind = kind;
+    }
+
+    $scope.createRvdApplication = function(options) {
+        RvdProjects.create({applicationSid: options.name, kind:options.kind}, null, function (data) { // RVD does not have an intuitive API :-( // NOTE 'null' is VERY IMPORTANT here as it makes $resource and the kind as a query parameter
+            Notifications.success("RVD application created");
+            window.open("/restcomm-rvd#/designer/" + data.sid + "=" + data.name);
+
+        });
+
     }
 
 

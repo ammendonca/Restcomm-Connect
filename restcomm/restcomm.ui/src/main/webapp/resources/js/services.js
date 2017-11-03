@@ -699,6 +699,8 @@ rcServices.factory('RCommApplications', function($resource) {
 rcServices.factory('RvdProjects', function($resource) {
     return $resource('/restcomm-rvd/services/projects/:applicationSid', {
             applicationSid: '@applicationSid'
+        }, {
+            create: {method: 'PUT'}
         }
     ); // TODO use 'rvdUrl' value from PublicConfig service here to determine 'restcomm-rvd' prefix
 });
