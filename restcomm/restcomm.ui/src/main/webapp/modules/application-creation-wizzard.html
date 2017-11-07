@@ -1,16 +1,17 @@
 <div class="apps-wizzard">
+    <div class="row top-spacer hidden-xs">
+    </div>
     <div class="row bottom-row">
-        <div class="col-md-6">
-            <h3>External application</h3>
-            <div class="pick-external-area">
-                <div><a href="#/applications/new"> Click here to create an external/URL application</a></div>
+        <div class="col-sm-4">
+            <div class="pick-area">
+                <div><a href="#/applications/new"> <img src="resources/img/v2/app-wizzard-url-app.png"/></a></div>
+                <h4>Import a URL Application</h4>
             </div>
         </div>
-        <div class="col-md-6">
-            <h3>RVD application</h3>
-            <div class="pick-rvd-area" ngf-drop="onFileDropped($files)" ngf-multiple="false">
-                <div><a href="#/applications/new"> Click here to create an rvd project</a></div>
-                <div>Or drop an rvd project</div>
+        <div class="col-sm-4">
+            <div class="pick-area">
+                <div><a href="#/applications/new"> <img src="resources/img/v2/app-wizzard-vd-app.png"/></a></div>
+                <h4>Create a Visual Designer Application</h4>
             </div>
             <!--
             <div ngf-drop="uploadFiles($files)" class="drop-box" ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-pattern="'image/*,application/pdf'">Drop Images or PDFs files here</div>
@@ -23,6 +24,12 @@
             </div>
             -->
 
+        </div>
+        <div class="col-sm-4">
+            <div class="pick-area" ngf-drop="onFileDropped($files)" ngf-multiple="false">
+                <div><a href="#/applications/new"> <img src="resources/img/v2/app-wizzard-zip-app.png"/></a></div>
+                <h4>Import a zipped Visual Designer Application</h4>
+            </div>
         </div>
     </div>
 </div>

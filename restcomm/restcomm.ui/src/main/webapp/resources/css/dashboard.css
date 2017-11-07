@@ -897,14 +897,16 @@ form[role=login] input:-webkit-autofill:focus{
 }
 
 /* temporary settings until properly implement app creation-wizzard */
-.apps-wizzard .pick-rvd-area {
-    min-height: 300px;
-    background-color: lightgoldenrodyellow;
+.apps-wizzard .pick-area {
+    text-align: center;
+    padding-top: 20px;
 }
 
-.apps-wizzard .pick-external-area {
-    min-height: 300px;
-    background-color: lightgoldenrodyellow;
+.apps-wizzard .pick-area img {
+}
+
+.apps-wizzard .top-spacer {
+    margin-top: 50px;
 }
 
 .app-creation .name-param input {
