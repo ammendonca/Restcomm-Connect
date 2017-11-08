@@ -42,6 +42,10 @@ angular.module('rcApp.controllers').controller('ApplicationCreationWizzardCtrl',
         $location.path("/applications/new");
 
     }
+
+    $scope.calcDragOverClass = function(event,b) {
+        console.log(event);
+    }
 });
 
 angular.module('rcApp.controllers').controller('ApplicationCreationCtrl', function ($scope, $rootScope, $location, Notifications, RvdProjectImporter, RvdProjects) {

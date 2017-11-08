@@ -902,12 +902,34 @@ form[role=login] input:-webkit-autofill:focus{
     padding-top: 20px;
 }
 
-.apps-wizzard .pick-area img {
+.apps-wizzard .pick-area {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.apps-wizzard .pick-area:not(:last-child) {
+    border-right: 2px solid #f0f0f0;
 }
 
 .apps-wizzard .top-spacer {
     margin-top: 50px;
 }
+
+.apps-wizzard .pick-area .dragover {
+    background-color: #f0f0f0;
+    padding-bottom: 20px;
+    border-radius: 10px;
+}
+
+.apps-wizzard .pick-area img:hover {
+    opacity: 0.8;
+}
+
+.apps-wizzard .pick-area h4 {
+    color: #606060;
+}
+
+
 
 /*.app-creation .name-param input, .app-creation .url-param input {
     width: 100%;
@@ -1242,4 +1264,13 @@ input, button, select, textarea {
 
 .spacer30 {
     margin-top: 30px;
+}
+
+.rc-btn.discrete-btn {
+    background-color: white;
+    color: #d0d0d0;
+}
+.rc-btn.discrete-btn:hover {
+    background-color: #d0d0d0;
+    color: white;
 }
