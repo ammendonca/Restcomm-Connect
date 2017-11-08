@@ -42,10 +42,6 @@ angular.module('rcApp.controllers').controller('ApplicationCreationWizzardCtrl',
         $location.path("/applications/new");
 
     }
-
-    $scope.calcDragOverClass = function(event,b) {
-        console.log(event);
-    }
 });
 
 angular.module('rcApp.controllers').controller('ApplicationCreationCtrl', function ($scope, $rootScope, $location, Notifications, RvdProjectImporter, RvdProjects) {
@@ -89,26 +85,6 @@ angular.module('rcApp.controllers').controller('ApplicationCreationCtrl', functi
                 Notifications.error(message);
             });
         }
-
-        /*
-        $scope.upload = $upload.upload({
-            url: '/restcomm-rvd/services/projects',
-            file: file,
-        }).progress(function(evt) {
-            //console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
-        }).success(function(data, status, headers, config) {
-            Notifications.success("Application imported successfully");
-            $location.path("/applications")
-        }).error(function(data, status, headers, config) {
-            if (status == 400 && data && data.exception && data.exception.className == "UnsupportedProjectVersion") {
-                console.log(data.exception.message);
-                Notifications.error("Cannot import application. " + data.exception.message, type:"danger");
-            } else {
-                console.log(data);
-                Notifications.error("Error importing application");
-            }
-        });
-        */
     }
 
     $scope.appOptions = appOptions;
@@ -116,9 +92,23 @@ angular.module('rcApp.controllers').controller('ApplicationCreationCtrl', functi
 });
 
 
-angular.module('rcApp.controllers').controller('ApplicationExternalCreationCtrl', function ($scope) {
+angular.module('rcApp.controllers').controller('ApplicationExternalCreationCtrl', function ($scope, RCommApplications, SessionService, $httpParamSerializer, Notifications, $location) {
+    var accountSid = SessionService.get("sid");
     $scope.appOptions = { kind: "voice"}; // by default create voice applications
     $scope.isExternalApp = true; // flag this application as external to adapt the UI to it
+
+    $scope.setKind = function(options, kind) {
+        options.kind = kind;
+    }
+
+    $scope.createExternalApplication = function(app) {
+        console.log('creating external app');
+        RCommApplications.save({accountSid: accountSid}, $httpParamSerializer({RcmlUrl: app.rcml_url, FriendlyName: app.name}), function () {
+            Notifications.success("Application '" + app.name + " ' created");
+            $location.path( "/applications" );
+        });
+    }
+
 
 });
 

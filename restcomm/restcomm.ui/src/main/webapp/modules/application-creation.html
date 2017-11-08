@@ -39,7 +39,7 @@
                         </div>
                         <div ng-show="isExternalApp" class="col-md-6 labeled-field">
                             <div class="row">
-                                <div class="spacer30"></div>
+                                <div class="spacer20 hidden-xs"></div>
                                 <div class="col-sm-2">
                                     <label>URL </label>
                                 </div>
@@ -60,7 +60,11 @@
                     <span class="hidden-xs">Close</span>
                     <span class="visible-xs"><i class="fa fa-times"></i></span>
                 </button>
-                <button ng-if="!droppedFiles" class="rc-btn save-btn" ng-click="createRvdApplication(appOptions)">
+                <button ng-if="!droppedFiles && !isExternalApp" class="rc-btn save-btn" ng-click="createRvdApplication(appOptions)">
+                    <span class="hidden-xs">Next</span>
+                    <span class="visible-xs"><i class="fa fa-chevron-right"></i></span>
+                </button>
+                <button ng-if="!droppedFiles && isExternalApp" class="rc-btn save-btn" ng-click="createExternalApplication(appOptions)">
                     <span class="hidden-xs">Next</span>
                     <span class="visible-xs"><i class="fa fa-chevron-right"></i></span>
                 </button>

@@ -902,10 +902,11 @@ form[role=login] input:-webkit-autofill:focus{
     padding-top: 20px;
 }
 
+/*
 .apps-wizzard .pick-area {
     padding-top: 60px;
     padding-bottom: 60px;
-}
+}*/
 
 .apps-wizzard .pick-area:not(:last-child) {
     border-right: 2px solid #f0f0f0;
@@ -1254,6 +1255,9 @@ input, button, select, textarea {
 }
 
 /* rc-field is a wrapper for labeled input controls */
+.labeled-field {
+    margin-bottom: 20px;
+}
 .labeled-field label {
     padding-top: 4px;
 }
@@ -1262,8 +1266,16 @@ input, button, select, textarea {
     width: 100%;
 }
 
+.spacer20 {
+    margin-top: 20px;
+}
+
 .spacer30 {
     margin-top: 30px;
+}
+
+.spacer60 {
+    margin-top: 60px;
 }
 
 .rc-btn.discrete-btn {
