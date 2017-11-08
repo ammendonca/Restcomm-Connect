@@ -892,7 +892,7 @@ form[role=login] input:-webkit-autofill:focus{
     margin-bottom: 20px;
 }
 
-.app-details .app-details-content {
+.app-details .app-details-content, .app-creation .app-creation-content {
     min-height: 250px;
 }
 
@@ -909,9 +909,9 @@ form[role=login] input:-webkit-autofill:focus{
     margin-top: 50px;
 }
 
-.app-creation .name-param input {
-    width: 80%;
-}
+/*.app-creation .name-param input, .app-creation .url-param input {
+    width: 100%;
+}*/
 
 .app-creation .params-section {
     font-size: 1.2em;
@@ -1229,4 +1229,17 @@ input, button, select, textarea {
     margin-top: 5px;
     position: relative;
     display: inline-block;
+}
+
+/* rc-field is a wrapper for labeled input controls */
+.labeled-field label {
+    padding-top: 4px;
+}
+
+.labeled-field input {
+    width: 100%;
+}
+
+.spacer30 {
+    margin-top: 30px;
 }
