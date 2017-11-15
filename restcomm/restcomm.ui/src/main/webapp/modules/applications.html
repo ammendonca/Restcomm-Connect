@@ -20,7 +20,7 @@
                 <h2><i class="fa fa-exclamation-circle"></i> No applications found</h2>
             </div>
 
-            <table ng-show="(appsList | filter:query).length > 0" class="table table-hover apps-list" style="table-layout: fixed;" ng-cloak>
+            <table ng-show="(appsList | filter:query).length > 0" class="table table-hover apps-list rc-list" style="table-layout: fixed;" ng-cloak>
                 <thead style="color: #4a4a4b;">
                 <th class="apps-list-name">Name</th>
                 <th class="apps-list-type">Type</th>
@@ -36,7 +36,7 @@
                         <div>{{ app.rcml_url | appKind }}</div>
                     </td>
                     <td class="apps-list-kind">{{app.kind}}</td>
-                    <td class="apps-list-number hidden-sm hidden-xs">{{app.numbers[0].phone_number}}</td>
+                    <td class="apps-list-number hidden-sm hidden-xs">{{app.numbers[0].phone_number ? app.numbers[0].phone_number : "not assigned"}}</td>
                 </tr>
                 </tbody>
             </table>
