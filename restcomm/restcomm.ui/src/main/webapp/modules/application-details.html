@@ -1,35 +1,31 @@
 <div class="app-details">
+    <div class="row ">
+        <div class="col-md-10 col-xs-12">
+            <div class="account-logo"><i class="fa fa-cogs"></i></div>
+            <div class="account-info">
+                <div class="account-name">{{ app.friendly_name }}</div>
+                <div class="account-type hidden-xs">Created {{ app.date_created | unixDate | date:'medium' }}</div>
+                <div class="account-type visible-xs">Created {{ app.date_created | unixDate | date:'short' }}</div>
+                <div class="account-status account-status-active" ng-show="provider=='rvd'"><i class="fa fa-bars"></i> RVD</div>
+                <div class="account-status account-status-active" ng-show="provider=='external'"><i class="fa fa-mail-forward"></i> External</div>
+            </div>
+        </div>
+        <div ng-if="provider=='rvd'" class="col-md-2 col-xs-12">
+            <div class="app-details-export pull-right" title="Export as .zip">
+                <button  class="rc-btn save-btn" ng-click="downloadRvdApp(app)">
+                    <span><i class="fa fa-download"></i></span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <hr>
     <div class="row">
-        <div class="col-md-offset-2 col-md-8">
+        <div class="col-md-12">
 
-            <h3>{{app.friendly_name}}</h3>
             <div class="app-details-content">
-                <div class="row app-details-subheader">
-                    <div class="col-md-5">
-                        <div class="app-details-type">
-                            <label>Application type</label>
-                            <span>{{app.kind}}</span>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="app-details-date">
-                            <label>Date created</label>
-                            <span>{{app.date_created}}</span>
-                        </div>
-                    </div>
-                    <div ng-if="provider=='rvd'" class="col-md-3">
-                        <div class="app-details-export pull-right">
-                            <button  class="rc-btn save-btn" ng-click="downloadRvdApp(app)">
-                                <span><i class="fa fa-download"></i></span>
-                            </button>
-                        </div>
-
-
-                    </div>
-                </div>
-
                 <div ng-show="provider=='external'" class="row url-section">
-                    <div class="col-md-6">
+                    <div class="col-md-offset-4 col-xs-offset-0 col-md-6 col-xs-12">
                         <form class="dashboard-form">
                             <label>URL </label>
                             <input name="url" type="text" size="40" placeholder="http(s)://" ng-model="app.rcml_url">
@@ -39,8 +35,11 @@
 
                 <div class="row app-numbers-section">
                     <div class="col-md-12">
-                        <label>Numbers that are  using this application: </label>
-                        <span>Not implemented</span>
+                        <h3 class="details-section-title">Numbers <span class="hidden-xs">that are  using this application<span></h3>
+                        <p>
+                            <span class="details-field-title">(n/a)</span>
+                        </p>
+
                     </div>
                 </div>
             </div>

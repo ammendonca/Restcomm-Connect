@@ -1299,8 +1299,10 @@ form[role=login] input:-webkit-autofill:focus{
     margin-bottom: 40px;
 }
 
+/* TODO remove this and respective occurences of url-section when time comes */
 .app-details .url-section {
-    margin-bottom: 30px;
+    margin-top: 30px;
+    margin-bottom: 20px;
 }
 
 .app-details .app-numbers-section {
@@ -1309,6 +1311,10 @@ form[role=login] input:-webkit-autofill:focus{
 
 .app-details .app-details-content, .app-creation .app-creation-content {
     min-height: 250px;
+}
+
+.app-details .details-section-title {
+    padding-top: 0;
 }
 
 /* temporary settings until properly implement app creation-wizzard */

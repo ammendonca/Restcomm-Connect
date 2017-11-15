@@ -142,3 +142,15 @@ rcFilters.filter('appKind', function () {
 });
 
 
+// converts a date string to unixDate
+rcFilters.filter('unixDate', function () {
+    return function(dateString) {
+        if (dateString) {
+            var d = new Date(dateString);
+            return d;
+        }
+        return dateString;
+    }
+});
+
+

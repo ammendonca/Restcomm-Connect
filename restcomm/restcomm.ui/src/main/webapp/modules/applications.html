@@ -36,7 +36,7 @@
                         <div>{{ app.rcml_url | appKind }}</div>
                     </td>
                     <td class="apps-list-kind">{{app.kind}}</td>
-                    <td class="apps-list-number hidden-sm hidden-xs">{{app.numbers[0].phone_number ? app.numbers[0].phone_number : "not assigned"}}</td>
+                    <td class="apps-list-number hidden-sm hidden-xs">{{app.numbers[0].phone_number ? app.numbers[0].phone_number : "not assigned"}}<!-- <a ng-hide="app.numbers[0].phone_number" href="#/numbers/incoming">assign</a> --></td>
                 </tr>
                 </tbody>
             </table>
