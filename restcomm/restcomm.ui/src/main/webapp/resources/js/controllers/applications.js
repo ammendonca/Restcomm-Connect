@@ -61,12 +61,11 @@ angular.module('rcApp.controllers').controller('ApplicationCreationCtrl', functi
     $scope.createRvdApplication = function(options) {
         RvdProjects.create({applicationSid: options.name, kind:options.kind}, null, function (data) { // RVD does not have an intuitive API :-( // NOTE 'null' is VERY IMPORTANT here as it makes $resource and the kind as a query parameter
             Notifications.success("RVD application created");
+            $location.path("/applications");
             window.open("/restcomm-rvd#/designer/" + data.sid + "=" + data.name);
-
         });
 
     }
-
 
     // if we're importing, use imported filename to suggest a name for the newly created project
     if (droppedFiles) {

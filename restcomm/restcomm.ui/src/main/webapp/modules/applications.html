@@ -3,12 +3,12 @@
         <div class="col-md-4 col-xs-6">
             <form class="search-form">
                 <img class="search-icon" src="resources/img/v2/search-icon.png">
-                <input name="q" type="text" size="40" placeholder="Search..." ng-model="query.friendly_name">
+                <input name="q" type="text" size="40" placeholder="Search..." ng-model="query.friendly_name" title="Search by application name">
             </form>
         </div>
         <div  class="col-md-4 col-md-offset-4 col-xs-6">
-            <button class="rc-btn pull-right hidden-xs" ng-click="$root.goTo('/applications/creation-wizzard')"><b>+</b> Add New App</button>
-            <button class="rc-btn rc-btn-sm pull-right visible-xs" ng-click="$root.goTo('/applications/creation-wizzard')"><b>+</b> Add New App</button>
+            <button class="rc-btn pull-right hidden-xs" ng-click="$root.goTo('/applications/creation-wizzard')" title="Create a new application"><b>+</b> Add New App</button>
+            <button class="rc-btn rc-btn-sm pull-right visible-xs" ng-click="$root.goTo('/applications/creation-wizzard')" title="Create a new application"><b>+</b> Add New App</button>
         </div>
     </div>
 
@@ -36,7 +36,10 @@
                         <div>{{ app.rcml_url | appKind }}</div>
                     </td>
                     <td class="apps-list-kind">{{app.kind}}</td>
-                    <td class="apps-list-number hidden-sm hidden-xs">{{app.numbers[0].phone_number ? app.numbers[0].phone_number : "not assigned"}}<!-- <a ng-hide="app.numbers[0].phone_number" href="#/numbers/incoming">assign</a> --></td>
+                    <td class="apps-list-number hidden-sm hidden-xs" >
+                        <span ng-show="app.numbers[0].phone_number">{{ app.numbers[0].phone_number }}<span ng-show="app.numbers[1]"> and more</span></span><!-- <a ng-hide="app.numbers[0].phone_number" href="#/numbers/incoming">assign</a> -->
+                        <span ng-show="!app.numbers[0].phone_number" title="This application is not assigned to any numbers">not assigned</span>
+                    </td>
                 </tr>
                 </tbody>
             </table>

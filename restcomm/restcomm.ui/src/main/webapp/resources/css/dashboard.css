@@ -1317,6 +1317,10 @@ form[role=login] input:-webkit-autofill:focus{
     padding-top: 0;
 }
 
+.app-details .account-logo {
+    font-size: 4em;
+}
+
 /* temporary settings until properly implement app creation-wizzard */
 .apps-wizzard .pick-area {
     text-align: center;
