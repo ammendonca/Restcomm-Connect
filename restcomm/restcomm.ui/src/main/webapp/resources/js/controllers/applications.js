@@ -7,7 +7,7 @@ angular.module('rcApp.controllers').controller('ApplicationDetailsCtrl', functio
     var accountSid = SessionService.get("sid");
     var applicationSid = $stateParams.applicationSid;
     $scope.app = RCommApplications.get({accountSid: accountSid, applicationSid: applicationSid}, function () {
-        $scope.provider = $filter('appKind')($scope.app.rcml_url);
+        $scope.provider = $filter('appProvider')($scope.app.rcml_url);
     });
     // TODO also retrieve IncomingNumbers list for specific application
 
@@ -102,7 +102,7 @@ angular.module('rcApp.controllers').controller('ApplicationExternalCreationCtrl'
 
     $scope.createExternalApplication = function(app) {
         console.log('creating external app');
-        RCommApplications.save({accountSid: accountSid}, $httpParamSerializer({RcmlUrl: app.rcml_url, FriendlyName: app.name}), function () {
+        RCommApplications.save({accountSid: accountSid}, $httpParamSerializer({RcmlUrl: app.rcml_url, FriendlyName: app.name, Kind: app.kind}), function () {
             Notifications.success("Application '" + app.name + " ' created");
             $location.path( "/applications" );
         });

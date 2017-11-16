@@ -1271,16 +1271,33 @@ form[role=login] input:-webkit-autofill:focus{
     margin-bottom: 20px;
 }
 
-.apps-list .apps-list-kind {
-    width: 20%;
+.apps-list td.apps-list-name {
+    vertical-align: middle;
+}
+
+.apps-list td.apps-list-kind {
+    vertical-align: middle;
+}
+.apps-list th.apps-list-kind {
+    width: 10%;
 }
 
 .apps-list .apps-list-type {
-    width: 20%;
+    vertical-align: middle;
+}
+.apps-list th.apps-list-type {
+    width: 23%;
 }
 
 .apps-list .apps-list-number {
     width: 20%;
+    vertical-align: middle;
+}
+
+.apps-list .apps-list-kind div {
+    width: 34px;
+    display: inline-block;
+    text-align: center;
 }
 
 .app-details .app-details-content {
@@ -1572,6 +1589,13 @@ form[role=login] input:-webkit-autofill:focus{
     font-weight: 400;
     color: #6d6e70;
 }
+
+/* experimental link underline feature */
+
+.rc-link:hover {
+    text-decoration: underline;
+}
+
 
 .rc-textbox.rc-textbox-advanced {
     border: 2px solid #ffdacb;

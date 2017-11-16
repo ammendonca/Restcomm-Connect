@@ -24,18 +24,24 @@
                 <thead style="color: #4a4a4b;">
                 <th class="apps-list-name">Name</th>
                 <th class="apps-list-type">Type</th>
-                <th class="apps-list-kind" >(need name)</th>
+                <th class="apps-list-kind" ></th>
                 <th class="apps-list-number hidden-sm hidden-xs" >Number</th>
                 </thead>
                 <tbody style="color: #6d6e70;">
-                <tr class="number-row" ng-repeat="app in filtered = (appsList | filter:query)" ng-click="$root.goTo('/applications/' + app.sid)">
+                <tr class="number-row" ng-repeat="app in filtered = (appsList | filter:query)">
                     <td class="apps-list-name">
-                        <div><a href="#/applications/{{app.sid}}">{{ app.friendly_name }}</a></div>
+                        <div><a class="rc-link" href="#/applications/{{app.sid}}">{{ app.friendly_name }}</a></div>
                     </td>
                     <td class="apps-list-type">
-                        <div>{{ app.rcml_url | appKind }}</div>
+                        <div>
+                            {{ app.rcml_url | appProvider }}
+                        </div>
                     </td>
-                    <td class="apps-list-kind">{{app.kind}}</td>
+                    <td class="apps-list-kind">
+                        <div ng-show="app.kind=='voice'" title="Voice application"><i class="fa fa-microphone"></i></div>
+                        <div ng-show="app.kind=='sms'" title="SMS application"><i class="fa fa-comment"></i></div>
+                        <div ng-show="app.kind=='ussd'" title="USSD application"><i  class="fa fa-sitemap"></i></div>
+                    </td>
                     <td class="apps-list-number hidden-sm hidden-xs" >
                         <span ng-show="app.numbers[0].phone_number">{{ app.numbers[0].phone_number }}<span ng-show="app.numbers[1]"> and more</span></span><!-- <a ng-hide="app.numbers[0].phone_number" href="#/numbers/incoming">assign</a> -->
                         <span ng-show="!app.numbers[0].phone_number" title="This application is not assigned to any numbers">not assigned</span>
