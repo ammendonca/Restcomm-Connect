@@ -1294,10 +1294,9 @@ form[role=login] input:-webkit-autofill:focus{
     vertical-align: middle;
 }
 
-.apps-list .apps-list-kind div {
-    width: 34px;
+.apps-list div.app-feature {
+    width: 26px;
     display: inline-block;
-    text-align: center;
 }
 
 .app-details .app-details-content {
