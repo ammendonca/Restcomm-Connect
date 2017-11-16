@@ -8,6 +8,9 @@ angular.module('rcApp.controllers').controller('ApplicationDetailsCtrl', functio
     var applicationSid = $stateParams.applicationSid;
     $scope.app = RCommApplications.get({accountSid: accountSid, applicationSid: applicationSid}, function () {
         $scope.provider = $filter('appProvider')($scope.app.rcml_url);
+    }, function () {
+        Notifications.error("Could not retrieve application " + applicationSid);
+        $location.path("/applications");
     });
     // TODO also retrieve IncomingNumbers list for specific application
 
@@ -29,7 +32,7 @@ angular.module('rcApp.controllers').controller('ApplicationDetailsCtrl', functio
     $scope.downloadRvdApp = function(app) {
         var downloadUrl =  '/restcomm-rvd/services/projects/' + app.sid + '/archive?projectName=' + app.friendly_name; // TODO remove '/restcomm-rvd/' hardcoded value and use one from PublicConfig service
         FileRetriever.download(downloadUrl, app.friendly_name + ".zip").catch(function () {
-            notifications.error("Error downloading project archive");
+            Notifications.error("Error downloading project archive");
         });
     }
 });

@@ -44,7 +44,7 @@
                     </td>
                     <td class="apps-list-number hidden-sm hidden-xs" >
                         <span ng-show="app.numbers[0].phone_number">{{ app.numbers[0].phone_number }}<span ng-show="app.numbers[1]"> and more</span></span><!-- <a ng-hide="app.numbers[0].phone_number" href="#/numbers/incoming">assign</a> -->
-                        <span ng-show="!app.numbers[0].phone_number" title="This application is not assigned to any numbers">not assigned</span>
+                        <span ng-show="!app.numbers[0].phone_number" title="This application is not assigned to any numbers"><a href="#/numbers/incoming">assign</a></span>
                     </td>
                 </tr>
                 </tbody>
