@@ -37,13 +37,21 @@ angular.module('rcApp.controllers').controller('ApplicationDetailsCtrl', functio
     }
 });
 
-angular.module('rcApp.controllers').controller('ApplicationCreationWizzardCtrl', function ($scope, $rootScope, $location) {
-    console.log("IN ApplicaitonCreationWizzardCtrl");
+angular.module('rcApp.controllers').controller('ApplicationCreationWizardCtrl', function ($scope, $rootScope, $location, Notifications) {
+    console.log("IN ApplicaitonCreationWizardCtrl");
 
     $scope.onFileDropped = function(files) {
-        $rootScope.droppedFiles = files;
-        $location.path("/applications/new");
-
+        // filename should end in .zip
+        if (files[0]) {
+            var m = files[0].name.match(RegExp("(.+)\\.zip$","i"));
+            if ( ! (m && m[1]) ) {
+                Notifications.error("This doesn't look like a .zip archive!");
+                return;
+            } else {
+                $rootScope.droppedFiles = files;
+                $location.path("/applications/new");
+            }
+        }
     }
 });
 
@@ -64,7 +72,7 @@ angular.module('rcApp.controllers').controller('ApplicationCreationCtrl', functi
     $scope.createRvdApplication = function(options) {
         RvdProjects.create({applicationSid: options.name, kind:options.kind}, null, function (data) { // RVD does not have an intuitive API :-( // NOTE 'null' is VERY IMPORTANT here as it makes $resource and the kind as a query parameter
             Notifications.success("RVD application created");
-            $location.path("/applications");
+            $location.path("/applications/" + data.sid);
             window.open("/restcomm-rvd#/designer/" + data.sid + "=" + data.name);
         });
 
@@ -72,17 +80,20 @@ angular.module('rcApp.controllers').controller('ApplicationCreationCtrl', functi
 
     // if we're importing, use imported filename to suggest a name for the newly created project
     if (droppedFiles) {
-        var m = droppedFiles[0].name.match(RegExp("(.+)\\.zip$"));
+        var m = droppedFiles[0].name.match(RegExp("(.+)\\.zip$", "i"));
         if ( m && m[1] ) {
             appOptions.name = m[1];
+        } else {
+            $scope.fileLooksWrong = true;
         }
     }
 
     $scope.importProjectFromFile = function(files, nameOverride) {
         if (files[0]) {
-            RvdProjectImporter.import(files[0], nameOverride).then(function () {
-                Notifications.success("Application imported successfully");
-                $location.path("/applications");
+            RvdProjectImporter.import(files[0], nameOverride).then(function (result) {
+                Notifications.success("Application '" + result.name + "' imported successfully");
+                $location.path("/applications/" + result.id);
+                window.open("/restcomm-rvd#/designer/" + result.id + "=" + result.name);
             }, function (message) {
                 Notifications.error(message);
             });

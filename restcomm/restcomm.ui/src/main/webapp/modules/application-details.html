@@ -1,13 +1,14 @@
 <div class="app-details">
     <div class="row ">
         <div class="col-md-10 col-xs-12">
-            <div class="account-logo"><i class="fa fa-cogs"></i></div>
+            <div class="account-logo"><i ng-show="provider=='rvd'" class="fa fa-bars" uib-tooltip="Visual Designer application" tooltip-append-to-body="true"></i><i ng-show="provider=='external'" class="fa fa-mail-forward" uib-tooltip="External application" tooltip-append-to-body="true"></i></div>
             <div class="account-info">
                 <div class="account-name">{{ app.friendly_name }}</div>
                 <div class="account-type hidden-xs">Created {{ app.date_created | unixDate | date:'medium' }}</div>
                 <div class="account-type visible-xs">Created {{ app.date_created | unixDate | date:'short' }}</div>
-                <div class="account-status account-status-active" ng-show="provider=='rvd'"><i class="fa fa-bars"></i> RVD</div>
-                <div class="account-status account-status-active" ng-show="provider=='external'"><i class="fa fa-mail-forward"></i> External</div>
+                <div class="account-status account-status-active" ng-show="app.kind=='voice'"><i class="fa fa-microphone"></i> VOICE</div>
+                <div class="account-status account-status-active" ng-show="app.kind=='sms'"><i class="fa fa-comment"></i> SMS</div>
+                <div class="account-status account-status-active" ng-show="app.kind=='ussd'"><i class="fa fa-sitemap"></i> USSD</div>
             </div>
         </div>
         <div ng-if="provider=='rvd'" class="col-md-2 col-xs-12">
