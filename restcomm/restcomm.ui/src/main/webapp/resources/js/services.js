@@ -139,7 +139,7 @@ rcServices.factory('AuthService',function(RCommAccounts,$http, $location, Sessio
             //if(data.date_created && data.date_created == data.date_updated) {
             if(response.data.status) {
               if(response.data.status === 'uninitialized') {
-                setActiveAccount(data);
+                setActiveAccount(response.data);
                 deferred.resolve("UNINITIALIZED");
                 return;
               }
@@ -190,11 +190,11 @@ rcServices.factory('AuthService',function(RCommAccounts,$http, $location, Sessio
             Authorization: auth_header,
             'Content-Type': 'application/x-www-form-urlencoded'
         }}).then(
-          function(account) {
-            setActiveAccount(account);
+          function(response) {
+            setActiveAccount(response.data);
             deferred.resolve();
           },
-          function(data) {
+          function(response) {
             clearActiveAccount();
             deferred.reject('PASSWORD_UPDATE_FAILED');
           });
